@@ -28,6 +28,7 @@ group :development, :test do
   gem "launchy"
   gem 'rake'
   gem 'rubocop'
+  gem 'rails-erd'
 end
 
 group :development do

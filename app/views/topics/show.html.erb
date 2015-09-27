@@ -4,11 +4,17 @@
   <strong>Title:</strong>
   <%= @topic.title %>
 </p>
-<p>
-  <strong>Post:</strong>
-  <%= @topic.post %>
-  <p>posted by <%= @user.email %></p>
-</p>
+<h2>Articles:</h2>
+<%= @topic.post %>
+
+<div>
+  <h1>Edited by </h1>
+  <% @topic.users.each do |user| %>
+    <ul>
+      <li><%= user.email %></li>
+    </ul>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
