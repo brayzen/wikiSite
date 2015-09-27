@@ -11,29 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926222948) do
+ActiveRecord::Schema.define(version: 20150927173942) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "body"
-    t.integer  "topic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "Topics_Users", id: false, force: :cascade do |t|
+    t.integer "topic_id", null: false
+    t.integer "user_id",  null: false
   end
 
-  create_table "articles_users", id: false, force: :cascade do |t|
-    t.integer "article_id", null: false
-    t.integer "user_id",    null: false
-  end
-
-  add_index "articles_users", ["article_id", "user_id"], name: "index_articles_users_on_article_id_and_user_id"
-  add_index "articles_users", ["user_id", "article_id"], name: "index_articles_users_on_user_id_and_article_id"
+  add_index "Topics_Users", ["topic_id", "user_id"], name: "index_Topics_Users_on_topic_id_and_user_id"
+  add_index "Topics_Users", ["user_id", "topic_id"], name: "index_Topics_Users_on_user_id_and_topic_id"
 
   create_table "topics", force: :cascade do |t|
     t.string   "title"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "posts"
+    t.integer  "user_id"
   end
+
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

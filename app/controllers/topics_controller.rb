@@ -24,8 +24,7 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.build(topic_params)
-
+    @topic = Topic.new(topic_params)
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
@@ -42,7 +41,8 @@ class TopicsController < ApplicationController
   def update
     respond_to do |format|
       if @topic.update(topic_params)
-        @topic.users << current_user
+        @topic.users << current_user #unless @topic.users.where(id: current_user.id)
+        # @topic.users << current_user.id
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
@@ -70,6 +70,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:title, :post)
+      params.require(:topic).permit(:title, :body)
     end
 end

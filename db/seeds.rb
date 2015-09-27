@@ -12,16 +12,13 @@
     )
 end
 
-10.times do
+20.times do
   Topic.create(
     title: Faker::Lorem.sentence(rand(4..10)),
-    )
-end
-
-100.times do
-  Article.create(
     body: Faker::Lorem.paragraph(rand(1..3)),
     )
 end
+
+
 
 
