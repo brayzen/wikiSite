@@ -4,6 +4,24 @@
   <strong>Title:</strong>
   <%= @topic.title %>
 </p>
+<p>
+  <strong>Body:</strong>
+  <%= @topic.body %>
+</p>
+<!-- unless uniq_user.include?(user.email) -->
+<h3>Article contributors:</h3>
+<% uniq_users = [] %>
+<% @topic.users.each do |user| %>
+  <% uniq_users << user.email unless uniq_users.include?(user.email) %>
+<% end %>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+  <% uniq_users.each do |user_email| %>
+    <ul>
+       <li> <%= user_email %></li>
+    </ul>
+  <% end %>
+
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_topic_path(@topic) %> |
+  <%= link_to 'Back', topics_path %>
+<% end %>
