@@ -1,14 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
-<p>
-  <strong>Post:</strong>
-  <%= @topic.post %>
-  <p>posted by <%= @user.email %></p>
-</p>
+<%= render 'display' %>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+<%= link_to 'Back', :back %>

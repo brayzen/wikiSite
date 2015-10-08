@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
+    @topic = Topic.find(params[:id])
   end
 
   # POST /topics
@@ -31,9 +32,11 @@ class TopicsController < ApplicationController
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
+        format.js { render :create }
       else
         format.html { render :new }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -45,6 +48,7 @@ class TopicsController < ApplicationController
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
+        format.js {render :update}
       else
         format.html { render :edit }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
@@ -59,6 +63,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
       format.json { head :no_content }
+      format.js { render :destroy }
     end
   end
 

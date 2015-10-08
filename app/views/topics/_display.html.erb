@@ -1,0 +1,16 @@
+
+
+<ul>
+  <li>
+    <strong>Title:</strong>
+    <p><%= @topic.title %></p>
+  </li>
+  <li>
+    <strong>Body:</strong>
+    <p><%= @topic.body %></p>
+  </li>
+  <li><%= link_to 'Show', @topic %> |
+      <%= link_to 'Edit', edit_topic_path(@topic) %> |
+      <%= link_to 'Destroy', @topic, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+  </li>
+</ul>

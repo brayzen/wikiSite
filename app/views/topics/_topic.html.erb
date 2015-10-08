@@ -1,0 +1,5 @@
+<li class="topics_list" id="<%= topic.id %>"><%= topic.title %> |
+  <%= link_to 'Show', topic %> |
+  <%= link_to 'Edit', edit_topic_path(topic), remote: true %> |
+  <%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?', remote: true } %>
+</li>

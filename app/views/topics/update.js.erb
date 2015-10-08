@@ -1,0 +1,3 @@
+var id = (<%= @topic.id %>).toString();
+$('ul li#'+ id).html("<%= j render @topic %> ");
+$('.field, .actions').remove();
