@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
-    @topic = Topic.find(params[:id])
+    # @topic = Topic.find(params[:id])
   end
 
   # POST /topics
@@ -30,7 +30,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
+        format.html { redirect_to :show, notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
         format.js { render :create }
       else
@@ -75,6 +75,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:title, :post)
+      params.require(:topic).permit(:title, :body)
     end
 end
