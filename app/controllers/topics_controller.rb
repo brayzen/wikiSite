@@ -10,6 +10,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @user = current_user
   end
 
   # GET /topics/new
@@ -19,6 +20,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
+    # @topic = Topic.find(params[:id])
   end
 
   # POST /topics
@@ -28,11 +30,13 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
+        format.html { redirect_to :show, notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
+        format.js { render :create }
       else
         format.html { render :new }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -44,6 +48,7 @@ class TopicsController < ApplicationController
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
+        format.js {render :update}
       else
         format.html { render :edit }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
@@ -58,6 +63,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
       format.json { head :no_content }
+      format.js { render :destroy }
     end
   end
 
@@ -69,6 +75,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:title)
+      params.require(:topic).permit(:title, :body)
     end
 end

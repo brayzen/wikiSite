@@ -1,0 +1,3 @@
+var id = (<%= @topic.id %>).toString();
+$('ul li#'+ id).html("<%= j render partial: @topic %> ").hide().fadeIn(1500);
+$('.field, .actions').remove();

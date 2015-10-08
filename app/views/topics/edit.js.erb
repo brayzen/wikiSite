@@ -1,0 +1,2 @@
+var id = (<%= @topic.id %>).toString();
+$('ul li#'+ id).after("<%= j render 'form' %> ");
